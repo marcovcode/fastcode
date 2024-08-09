@@ -1,5 +1,5 @@
 const App = () => {
-    return <div>Fast Code</div>;
+    return <div>Fastcode</div>;
 };
 
 export default App;
