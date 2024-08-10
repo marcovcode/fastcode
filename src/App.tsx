@@ -7,6 +7,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 const queryClient = new QueryClient();
 
 const Home = lazy(() => import("./pages/Home"));
+const Join = lazy(() => import("./pages/Join"));
 
 const App = () => {
     return (
@@ -15,6 +16,7 @@ const App = () => {
                 <BrowserRouter>
                     <Routes>
                         <Route index element={<Home />} />
+                        <Route path="/join" element={<Join />} />
                     </Routes>
                 </BrowserRouter>
             </Suspense>
