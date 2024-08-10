@@ -1,5 +1,11 @@
+import ProtectedRoute from "../utils/ProtectedRoute";
+
 const Home = () => {
-    return <h1>Fastcode</h1>;
+    return (
+        <ProtectedRoute>
+            <h1>Fastcode</h1>
+        </ProtectedRoute>
+    );
 };
 
 export default Home;
