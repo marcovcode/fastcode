@@ -1,8 +1,10 @@
+import AbsoluteCenter from "./AbsoluteCenter";
+
 const FullPageSpinner = () => {
     return (
-        <div className="h-screen flex justify-center items-center">
+        <AbsoluteCenter>
             <span className="loading loading-spinner loading-md" />
-        </div>
+        </AbsoluteCenter>
     );
 };
 
