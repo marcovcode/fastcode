@@ -2,7 +2,9 @@ import { PropsWithChildren } from "react";
 
 const AbsoluteCenter = ({ children }: PropsWithChildren) => {
     return (
-        <div className="h-dvh flex justify-center items-center">{children}</div>
+        <div className="h-full flex justify-center items-center">
+            {children}
+        </div>
     );
 };
 
