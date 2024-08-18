@@ -25,7 +25,7 @@ const JoinForm = () => {
                 <label
                     className={`input input-bordered flex items-center gap-2 w-full ${
                         formState.errors.email && "input-error"
-                    } ${isPending && "input-disabled"}`}
+                    } ${isPending && "disabled"}`}
                 >
                     <span>✉️</span>
                     <input
@@ -43,7 +43,7 @@ const JoinForm = () => {
 
                 <button
                     className={`btn btn-primary w-full ${
-                        isPending && "btn-disabled"
+                        isPending && "disabled"
                     }`}
                 >
                     {isPending ? <Spinner /> : "Join"}
