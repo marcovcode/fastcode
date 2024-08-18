@@ -1,8 +1,10 @@
+import AbsoluteCenter from "./ui/AbsoluteCenter";
+import Spinner from "./ui/Spinner";
+import AppLayout from "./ui/AppLayout";
+
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { lazy, Suspense } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import AbsoluteCenter from "./ui/AbsoluteCenter";
-import Spinner from "./ui/Spinner";
 
 const queryClient = new QueryClient();
 
@@ -21,8 +23,10 @@ const App = () => {
             >
                 <BrowserRouter>
                     <Routes>
-                        <Route index element={<Home />} />
-                        <Route path="/join" element={<Join />} />
+                        <Route element={<AppLayout />}>
+                            <Route index element={<Home />} />
+                            <Route path="/join" element={<Join />} />
+                        </Route>
                     </Routes>
                 </BrowserRouter>
             </Suspense>
