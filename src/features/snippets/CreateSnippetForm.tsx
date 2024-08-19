@@ -57,7 +57,11 @@ const CreateSnippetButton = () => {
                             onSubmit={handleSubmit(onSubmit)}
                         >
                             <div className="space-y-2">
-                                <label className="input input-bordered flex items-center gap-2">
+                                <label
+                                    className={`input input-bordered flex items-center gap-2 ${
+                                        isPending && "disabled"
+                                    }`}
+                                >
                                     <span>🖊️</span>
                                     <input
                                         type="text"
@@ -69,7 +73,9 @@ const CreateSnippetButton = () => {
                                 </label>
 
                                 <textarea
-                                    className="textarea textarea-bordered w-full"
+                                    className={`textarea textarea-bordered w-full ${
+                                        isPending && "disabled"
+                                    }`}
                                     rows={6}
                                     placeholder=".container {
     display: flex;
@@ -80,7 +86,11 @@ const CreateSnippetButton = () => {
                                     {...register("content")}
                                 ></textarea>
                             </div>
-                            <button className="btn btn-primary">
+                            <button
+                                className={`btn btn-primary ${
+                                    isPending && "disabled"
+                                }`}
+                            >
                                 {isPending ? <Spinner /> : "Create"}
                             </button>
                         </form>
