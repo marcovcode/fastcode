@@ -20,7 +20,7 @@ const CreateSnippetButton = () => {
 
                     <div className="space-y-4">
                         <h3 className="font-bold text-lg">
-                            Create a new snippet ✍️
+                            Create a new snippet ✂️
                         </h3>
 
                         <form className="flex flex-col gap-2 space-y-4">
