@@ -26,7 +26,7 @@ const CreateSnippetButton = () => {
                         <form className="flex flex-col gap-2 space-y-4">
                             <div className="space-y-2">
                                 <label className="input input-bordered flex items-center gap-2">
-                                    <span>📝</span>
+                                    <span>🖊️</span>
                                     <input
                                         type="text"
                                         className="grow"
