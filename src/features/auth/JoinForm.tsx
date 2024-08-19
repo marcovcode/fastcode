@@ -16,10 +16,10 @@ const JoinForm = () => {
 
     return (
         <form
-            className="sm:card sm:bg-neutral w-full sm:text-neutral-content text-base-content sm:w-96"
+            className="card bg-neutral text-neutral-content w-96"
             onSubmit={handleSubmit(onSubmit)}
         >
-            <div className="sm:card-body flex flex-col space-y-4 items-center text-center sm:space-y-2">
+            <div className="card-body flex flex-col items-center text-center space-y-2">
                 <h1 className="card-title">Start using Fastcode 🚀</h1>
 
                 <label
