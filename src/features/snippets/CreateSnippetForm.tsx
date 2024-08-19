@@ -9,7 +9,7 @@ import { useRef } from "react";
 const CreateSnippetButton = () => {
     const modal = useRef<HTMLDialogElement>(null);
 
-    const { handleSubmit, register } = useForm();
+    const { handleSubmit, register, reset } = useForm();
     const { createSnippet, isPending } = useCreateSnippet();
 
     const onSubmit: SubmitHandler<FieldValues> = (formData) => {
@@ -21,6 +21,7 @@ const CreateSnippetButton = () => {
         createSnippet(snippet, {
             onSuccess: () => {
                 modal.current?.close();
+                reset();
             },
         });
     };
