@@ -6,6 +6,93 @@ import { useCreateSnippet } from "../auth/useCreateSnippet";
 import { Tables } from "../../types";
 import { useRef } from "react";
 
+const languages = [
+    "text",
+    "abap",
+    "actionscript",
+    "ada",
+    "arduino",
+    "autoit",
+    "c",
+    "clojure",
+    "cs",
+    "cpp",
+    "coffeescript",
+    "csharp",
+    "css",
+    "cuda",
+    "d",
+    "dart",
+    "delphi",
+    "elixir",
+    "elm",
+    "erlang",
+    "fortran",
+    "foxpro",
+    "fsharp",
+    "go",
+    "graphql",
+    "gql",
+    "groovy",
+    "haskell",
+    "haxe",
+    "html",
+    "java",
+    "javascript",
+    "json",
+    "julia",
+    "jsx",
+    "js",
+    "kotlin",
+    "latex",
+    "lisp",
+    "livescript",
+    "lua",
+    "mathematica",
+    "makefile",
+    "matlab",
+    "objectivec",
+    "objective",
+    "objectpascal",
+    "ocaml",
+    "octave",
+    "perl",
+    "php",
+    "powershell",
+    "prolog",
+    "puppet",
+    "python",
+    "qml",
+    "r",
+    "racket",
+    "restructuredtext",
+    "rest",
+    "ruby",
+    "rust",
+    "sass",
+    "less",
+    "scala",
+    "scheme",
+    "shell",
+    "smalltalk",
+    "sql",
+    "standardml",
+    "sml",
+    "swift",
+    "tcl",
+    "tex",
+    "tsx",
+    "ts",
+    "typescript",
+    "vala",
+    "vbnet",
+    "verilog",
+    "vhdl",
+    "xml",
+    "xquery",
+    "yaml",
+];
+
 const CreateSnippetButton = () => {
     const modal = useRef<HTMLDialogElement>(null);
 
@@ -16,6 +103,7 @@ const CreateSnippetButton = () => {
         const snippet: Tables<"snippets"> = {
             title: formData.title,
             content: formData.content,
+            language: formData.language,
         };
 
         createSnippet(snippet, {
@@ -85,6 +173,16 @@ const CreateSnippetButton = () => {
                                     required
                                     {...register("content")}
                                 ></textarea>
+                                <select
+                                    className="select select-bordered w-full"
+                                    {...register("language")}
+                                >
+                                    {languages.map((language) => (
+                                        <option key={language}>
+                                            {language}
+                                        </option>
+                                    ))}
+                                </select>
                             </div>
                             <button
                                 className={`btn btn-primary ${
