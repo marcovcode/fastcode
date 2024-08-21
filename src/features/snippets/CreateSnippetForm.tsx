@@ -4,7 +4,7 @@ import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { HiPlus } from "react-icons/hi2";
 import { useCreateSnippet } from "../auth/useCreateSnippet";
 import { Tables } from "../../types";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 
 const languages = [
     "text",
@@ -95,8 +95,7 @@ const languages = [
 
 const CreateSnippetButton = () => {
     const modalRef = useRef<HTMLDialogElement>(null);
-
-    const { handleSubmit, register, reset } = useForm();
+    const { handleSubmit, register, reset, setValue } = useForm();
     const { createSnippet, isPending } = useCreateSnippet();
 
     const onSubmit: SubmitHandler<FieldValues> = (formData) => {
@@ -113,6 +112,23 @@ const CreateSnippetButton = () => {
             },
         });
     };
+
+    useEffect(() => {
+        const handlePaste = (event: ClipboardEvent) => {
+            const pastedText = event.clipboardData?.getData("text");
+            if (pastedText) {
+                event.preventDefault();
+                modalRef.current?.showModal();
+                setValue("content", pastedText);
+            }
+        };
+
+        document.addEventListener("paste", handlePaste);
+
+        return () => {
+            document.removeEventListener("paste", handlePaste);
+        };
+    }, [setValue]);
 
     return (
         <>
