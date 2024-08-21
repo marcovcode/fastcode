@@ -3,9 +3,9 @@ import SnippetsGrid from "../features/snippets/SnippetsGrid";
 import ProtectedRoute from "../utils/ProtectedRoute";
 import AbsoluteCenter from "../ui/AbsoluteCenter";
 import Spinner from "../ui/Spinner";
+import SearchInput from "../features/snippets/SearchInput";
 
 import { useSnippets } from "../features/snippets/useSnippets";
-import SearchInput from "../features/snippets/SearchInput";
 
 const Home = () => {
     const { isLoading } = useSnippets();

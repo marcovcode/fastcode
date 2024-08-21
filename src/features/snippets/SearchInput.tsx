@@ -1,10 +1,17 @@
-import { useEffect, useRef } from "react";
+import { SyntheticEvent, useEffect, useRef } from "react";
+import { useSearchParams } from "react-router-dom";
 
 const SearchInput = () => {
-    const search = useRef<HTMLInputElement>(null);
+    const searchRef = useRef<HTMLInputElement>(null);
+    const [_, setSearchParams] = useSearchParams();
+
+    const handleChange = (e: SyntheticEvent<HTMLInputElement>) => {
+        const search = e.currentTarget.value;
+        setSearchParams({ search: search });
+    };
 
     useEffect(() => {
-        const focusSearch = () => search.current?.focus();
+        const focusSearch = () => searchRef.current?.focus();
         document.addEventListener("keydown", focusSearch);
         return () => document.removeEventListener("keydown", focusSearch);
     }, []);
@@ -16,7 +23,8 @@ const SearchInput = () => {
                 type="text"
                 className="grow"
                 placeholder="Search"
-                ref={search}
+                ref={searchRef}
+                onChange={handleChange}
             />
         </label>
     );

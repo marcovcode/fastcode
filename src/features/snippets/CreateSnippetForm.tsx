@@ -94,7 +94,7 @@ const languages = [
 ];
 
 const CreateSnippetButton = () => {
-    const modal = useRef<HTMLDialogElement>(null);
+    const modalRef = useRef<HTMLDialogElement>(null);
 
     const { handleSubmit, register, reset } = useForm();
     const { createSnippet, isPending } = useCreateSnippet();
@@ -108,7 +108,7 @@ const CreateSnippetButton = () => {
 
         createSnippet(snippet, {
             onSuccess: () => {
-                modal.current?.close();
+                modalRef.current?.close();
                 reset();
             },
         });
@@ -127,7 +127,7 @@ const CreateSnippetButton = () => {
                 <HiPlus />
             </button>
 
-            <dialog id="modal" className="modal" ref={modal}>
+            <dialog id="modal" className="modal" ref={modalRef}>
                 <div className="modal-box">
                     <form method="dialog">
                         <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
