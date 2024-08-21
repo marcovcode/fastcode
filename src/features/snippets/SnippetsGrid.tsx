@@ -6,7 +6,7 @@ const SnippetsGrid = () => {
     const { snippets } = useSnippets();
     const [searchParams] = useSearchParams();
 
-    const searchQuery = searchParams.get("search")?.toLowerCase();
+    const searchQuery = searchParams.get("search")?.toLowerCase() || "";
     const filteredSnippets = snippets?.filter(
         (snippet) =>
             snippet.title.toLowerCase().includes(searchQuery) ||
