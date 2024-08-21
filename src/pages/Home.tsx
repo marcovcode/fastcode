@@ -5,6 +5,7 @@ import AbsoluteCenter from "../ui/AbsoluteCenter";
 import Spinner from "../ui/Spinner";
 
 import { useSnippets } from "../features/snippets/useSnippets";
+import SearchInput from "../features/snippets/SearchInput";
 
 const Home = () => {
     const { isLoading } = useSnippets();
@@ -18,8 +19,14 @@ const Home = () => {
 
     return (
         <ProtectedRoute>
-            <SnippetsGrid />
-            <CreateSnippetButton />
+            <div className="space-y-4">
+                <div className="flex gap-4">
+                    <SearchInput />
+                    <CreateSnippetButton />
+                </div>
+
+                <SnippetsGrid />
+            </div>
         </ProtectedRoute>
     );
 };
