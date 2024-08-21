@@ -10,8 +10,11 @@ const SearchInput = () => {
         setSearchParams({ search: search });
     };
 
+    const focusSearch = (e: KeyboardEvent) => {
+        if (e.key.length === 1) searchRef.current?.focus();
+    };
+
     useEffect(() => {
-        const focusSearch = () => searchRef.current?.focus();
         document.addEventListener("keydown", focusSearch);
         return () => document.removeEventListener("keydown", focusSearch);
     }, []);
