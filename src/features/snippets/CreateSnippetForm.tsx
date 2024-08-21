@@ -94,9 +94,11 @@ const languages = [
 ];
 
 const CreateSnippetButton = () => {
-    const modalRef = useRef<HTMLDialogElement>(null);
     const { handleSubmit, register, reset, setValue } = useForm();
     const { createSnippet, isPending } = useCreateSnippet();
+    const modalRef = useRef<HTMLDialogElement>(null);
+    const { ref: titleFormRef, ...titleFormRest } = register("title");
+    const titleRef = useRef<HTMLInputElement>(null);
 
     const onSubmit: SubmitHandler<FieldValues> = (formData) => {
         const snippet: Tables<"snippets"> = {
@@ -130,15 +132,27 @@ const CreateSnippetButton = () => {
         };
     }, [setValue]);
 
+    useEffect(() => {
+        const observer = new MutationObserver(() => {
+            if (modalRef.current?.open) {
+                titleRef.current!.focus();
+            }
+        });
+
+        if (modalRef.current) {
+            observer.observe(modalRef.current, { attributes: true });
+        }
+
+        return () => {
+            observer.disconnect();
+        };
+    }, []);
+
     return (
         <>
             <button
                 className="btn btn-circle btn-primary"
-                onClick={() =>
-                    (document.getElementById(
-                        "modal"
-                    ) as HTMLDialogElement)!.showModal()
-                }
+                onClick={() => modalRef.current?.showModal()}
             >
                 <HiPlus />
             </button>
@@ -146,7 +160,10 @@ const CreateSnippetButton = () => {
             <dialog id="modal" className="modal" ref={modalRef}>
                 <div className="modal-box">
                     <form method="dialog">
-                        <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+                        <button
+                            className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
+                            onClick={() => modalRef.current?.close()}
+                        >
                             ✕
                         </button>
                     </form>
@@ -172,7 +189,11 @@ const CreateSnippetButton = () => {
                                         className="grow"
                                         placeholder="Center a div"
                                         required
-                                        {...register("title")}
+                                        {...titleFormRest}
+                                        ref={(e) => {
+                                            titleFormRef(e);
+                                            titleRef.current = e;
+                                        }}
                                     />
                                 </label>
 
