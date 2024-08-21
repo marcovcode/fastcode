@@ -1,4 +1,4 @@
-import { atomOneDark, CodeBlock } from "react-code-blocks";
+import { atomOneDark, CopyBlock } from "react-code-blocks";
 import { useSnippets } from "./useSnippets";
 
 const SnippetsGrid = () => {
@@ -18,10 +18,11 @@ const SnippetsGrid = () => {
                             </div>
                         </div>
 
-                        <CodeBlock
+                        <CopyBlock
                             text={snippet.content}
                             language={snippet.language}
                             theme={atomOneDark}
+                            codeBlock={true}
                             customStyle={{
                                 padding: "1rem",
                                 borderBottomLeftRadius: "1rem",
