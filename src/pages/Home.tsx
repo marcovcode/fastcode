@@ -4,6 +4,7 @@ import ProtectedRoute from "../utils/ProtectedRoute";
 import AbsoluteCenter from "../ui/AbsoluteCenter";
 import Spinner from "../ui/Spinner";
 import SearchInput from "../features/snippets/SearchInput";
+import AccountActionsDropdown from "../features/snippets/AccountActionsDropdown";
 
 import { useSnippets } from "../features/snippets/useSnippets";
 
@@ -23,6 +24,7 @@ const Home = () => {
                 <div className="flex gap-4">
                     <SearchInput />
                     <CreateSnippetButton />
+                    <AccountActionsDropdown />
                 </div>
 
                 <SnippetsGrid />
