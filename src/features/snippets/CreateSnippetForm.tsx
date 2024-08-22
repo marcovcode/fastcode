@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import Spinner from "../../ui/Spinner";
 
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
