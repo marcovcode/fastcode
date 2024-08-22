@@ -1,6 +1,7 @@
 import { atomOneDark, CopyBlock } from "react-code-blocks";
 import { useSnippets } from "./useSnippets";
 import { useSearchParams } from "react-router-dom";
+import { useEffect } from "react";
 
 const SnippetsGrid = () => {
     const { snippets } = useSnippets();
@@ -13,6 +14,23 @@ const SnippetsGrid = () => {
             snippet.language.toLowerCase().includes(searchQuery) ||
             snippet.content.toLowerCase().includes(searchQuery)
     );
+
+    useEffect(() => {
+        const handleKeyDown = (e: KeyboardEvent) => {
+            if (e.key === "Enter") {
+                const firstSnippetContent = filteredSnippets?.[0]?.content;
+                if (firstSnippetContent) {
+                    navigator.clipboard.writeText(firstSnippetContent);
+                }
+            }
+        };
+
+        window.addEventListener("keydown", handleKeyDown);
+
+        return () => {
+            window.removeEventListener("keydown", handleKeyDown);
+        };
+    }, [filteredSnippets]);
 
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
