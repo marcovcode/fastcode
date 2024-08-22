@@ -2,7 +2,7 @@ import Spinner from "../../ui/Spinner";
 
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { HiPlus } from "react-icons/hi2";
-import { useCreateSnippet } from "../auth/useCreateSnippet";
+import { useCreateSnippet } from "./useCreateSnippet";
 import { Tables } from "../../types";
 import { useEffect, useRef } from "react";
 

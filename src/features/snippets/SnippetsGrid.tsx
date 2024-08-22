@@ -1,11 +1,17 @@
+import Spinner from "../../ui/Spinner";
+
 import { atomOneDark, CopyBlock } from "react-code-blocks";
 import { useSnippets } from "./useSnippets";
 import { useSearchParams } from "react-router-dom";
 import { useEffect } from "react";
+import { HiTrash } from "react-icons/hi2";
+import { useDeleteSnippet } from "./useDeleteSnippet";
+import { Tables } from "../../types";
 
 const SnippetsGrid = () => {
     const { snippets } = useSnippets();
     const [searchParams] = useSearchParams();
+    const { deleteSnippet, isPending } = useDeleteSnippet();
 
     const searchQuery = searchParams.get("search")?.toLowerCase() || "";
     const filteredSnippets = snippets?.filter(
@@ -14,6 +20,10 @@ const SnippetsGrid = () => {
             snippet.language.toLowerCase().includes(searchQuery) ||
             snippet.content.toLowerCase().includes(searchQuery)
     );
+
+    const handleClick = (id: number) => {
+        deleteSnippet(id);
+    };
 
     useEffect(() => {
         const handleKeyDown = (e: KeyboardEvent) => {
@@ -34,14 +44,23 @@ const SnippetsGrid = () => {
 
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {filteredSnippets?.map((snippet) => (
+            {filteredSnippets?.map((snippet: Tables<"snippets">) => (
                 <div className="flex justify-center" key={snippet.id}>
                     <div className="card bg-neutral text-neutral-content w-full">
                         <div className="card-body">
                             <div className="card-title flex justify-between">
                                 <h1>{snippet.title}</h1>
-                                <div className="badge badge-secondary">
-                                    {snippet.language}
+
+                                <div className="space-x-4">
+                                    <div className="badge badge-secondary">
+                                        {snippet.language}
+                                    </div>
+                                    <button
+                                        className="btn btn-circle btn-error"
+                                        onClick={() => handleClick(snippet.id)}
+                                    >
+                                        {isPending ? <Spinner /> : <HiTrash />}
+                                    </button>
                                 </div>
                             </div>
                         </div>

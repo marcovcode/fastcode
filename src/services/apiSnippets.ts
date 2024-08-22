@@ -22,3 +22,8 @@ export async function createSnippet(snippet: Tables<"snippets">) {
         .select();
     if (error) throw new Error(error.message);
 }
+
+export async function deleteSnippet(id: number) {
+    const { error } = await supabase.from("snippets").delete().eq("id", id);
+    if (error) throw new Error(error.message);
+}
