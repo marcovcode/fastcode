@@ -56,7 +56,9 @@ const SnippetsGrid = () => {
                                         {snippet.language}
                                     </div>
                                     <button
-                                        className="btn btn-circle btn-error"
+                                        className={`btn btn-circle btn-error ${
+                                            isPending && "disabled"
+                                        }`}
                                         onClick={() => handleClick(snippet.id)}
                                     >
                                         {isPending ? <Spinner /> : <HiTrash />}
